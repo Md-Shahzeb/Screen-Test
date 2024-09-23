@@ -1,0 +1,57 @@
+Q3.Demonstrate understanding of asynchronous programming concepts using callbacks, promises, or async/await in Java script/Type script ? 
+Ans: Asynchronous programming in JavaScript is crucial for handling operations that take time, such as API calls or file I/O, without blocking the execution of code.
+     Here are demonstrations using callbacks, promises, and async/await.
+  1. Callbacks :- Callbacks are functions passed as arguments to other functions, which can be called after a task completes.
+	Code:
+		function fetchData(callback) {
+    			setTimeout(() => {
+        		const data = { message: 'Data fetched successfully!' };
+        		callback(data);
+    			}, 2000); // Simulate a 2-second delay.
+		}
+
+			fetchData((result) => {
+    		console.log(result.message); 
+  	});
+
+ 2. Promises :- Promises represent a value that may be available now, or in the future, or never. They can be in one of three states: pending, fulfilled, or rejected.
+	Code: 
+		function fetchData() {
+   			 return new Promise((resolve, reject) => {
+        		 setTimeout(() => {
+          	  const success = true; // Simulate success or failure
+           	 if (success) {
+                 resolve({ message: 'Data fetched successfully!' });
+            	} else {
+                  reject(new Error('Failed to fetch data.'));
+            	}
+        	}, 2000);
+    	   });
+       }
+	fetchData()
+       .then((result) => {
+        console.log(result.message); // Output: Data fetched successfully!
+     })
+       .catch((error) => {
+        console.error(error.message); // Output: Failed to fetch data.
+    });
+
+3. Async/Await :-Async/Await is syntactic sugar built on top of promises, making asynchronous code easier to read and write.
+	Code:
+	     function fetchData() {
+    	     return new Promise((resolve) => {
+       	     setTimeout(() => {
+            resolve({ message: 'Data fetched successfully!' });
+       	    }, 2000);
+    	});
+	}
+	async function getData() {
+    	try {
+        const result = await fetchData();
+        console.log(result.message); // Output: Data fetched successfully!
+    } catch (error) {
+        console.error(error.message);
+    }
+  }
+  getData();
+
